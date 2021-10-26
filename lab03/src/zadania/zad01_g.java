@@ -24,17 +24,25 @@ public class zad01_g {
         }
 
 
-        while((lewy<1)&&(lewy>=n   ))
+        while((lewy<1)||(lewy>=n   ))
         {
             System.out.print("Podaj wartosc lewy: ");
             lewy = in.nextInt();
         }
-        while((prawy<1)&&(prawy>=n   ))
+        while((prawy<1)||(prawy>=n )||(prawy<lewy))
         {
             System.out.print("Podaj wartosc prawy: ");
             prawy = in.nextInt();
         }
-        for (int j=0; j<(prawy-lewy)&&((prawy-lewy)>0);j++) {
+        for (int j=0; (j<((prawy-lewy))-1);j++) {
+            System.out.println(tab[lewy+j-1]);
+            System.out.println(tab[prawy-j-1]);
+            int buforek = tab[lewy+j-1];
+            tab[lewy+j-1] = tab[prawy-j-1];
+            tab[prawy-j-1]=buforek;
+        }
+        for (int liczba : tab) {
+            System.out.println(liczba + " ");
         }
 
         }
