@@ -1,9 +1,9 @@
+package pl.imiajd.aleksiejczyk;
 import java.lang.Comparable;
 import java.lang.Cloneable;
 import java.time.LocalDate;
-package pl.imiajd.aleksiejczyk;
-
-public class Osoba implements Cloneable, Comparable {
+import java.io.*;
+public class Osoba<T extends Osoba<T>> implements Cloneable, Comparable<T> {
     private LocalDate rokUrodzenia;
     private String nazwisko;
 
@@ -27,10 +27,16 @@ public class Osoba implements Cloneable, Comparable {
         Osoba osoba = (Osoba) o;
         return rokUrodzenia.equals(osoba.rokUrodzenia) && nazwisko.equals(osoba.nazwisko);
     }
-    public int compareTo(Osoba other) {
-        int rok = this.nazwisko.compareTo(other.nazwisko);
-        if (rok != 0) return rok;
-        return this.rokUrodzenia.compareTo(other.rokUrodzenia);
+    @Override
+    public int compareTo(T o) {
+        String str1=this.toString();
+        String str2=o.toString();
+        if (str1.length()>str2.length())
+            return 1;
+        else if (str1.length()<str2.length())
+            return -1;
+        else
+            return 0;
     }
     @Override
     public String toString() {
